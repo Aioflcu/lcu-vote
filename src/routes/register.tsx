@@ -54,10 +54,10 @@ function RegisterPage() {
         <p className="text-sm text-muted-foreground mt-1">Register with your Leadcity details to vote.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4" noValidate>
           <Field label="Full name" error={errors.name?.message}>
-            <Input placeholder="Ada Lovelace" {...register("name")} />
+            <Input placeholder="Ai-oflcu" {...register("name")} />
           </Field>
           <Field label="Matric number" error={errors.matric?.message}>
-            <Input placeholder="LCU/2024/0001" {...register("matric")} />
+            <Input placeholder="LCU/UG/24/22999" {...register("matric")} />
           </Field>
           <Field label="Email" error={errors.email?.message}>
             <Input type="email" placeholder="you@leadcity.edu.ng" {...register("email")} />

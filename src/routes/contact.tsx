@@ -45,8 +45,8 @@ function ContactPage() {
       <div className="mt-10 grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 space-y-4">
           <InfoCard icon={Mail} label="Email" value="votes@leadcity.edu.ng" />
-          <InfoCard icon={Phone} label="Phone" value="+234 800 LEADCITY" />
-          <InfoCard icon={MapPin} label="Office" value="SUG Building, Lead City University, Ibadan" />
+          <InfoCard icon={Phone} label="Phone" value="+2349119395789" />
+          <InfoCard icon={MapPin} label="Office" value=", Lead City University, Ibadan" />
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2 rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-card-soft space-y-4" noValidate>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -54,7 +54,7 @@ function ContactPage() {
               <Input placeholder="Your name" {...register("name")} />
             </Field>
             <Field label="Email" error={errors.email?.message}>
-              <Input type="email" placeholder="you@example.com" {...register("email")} />
+              <Input type="email" placeholder="elon@gmil.com" {...register("email")} />
             </Field>
           </div>
           <Field label="Message" error={errors.message?.message}>
