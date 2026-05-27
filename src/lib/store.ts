@@ -1,7 +1,7 @@
 // Lightweight localStorage-backed store for the Leadcity Voting App.
 // All state lives in the browser — no backend needed.
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useMemo } from "react";
 
 export type ElectionStatus = "Open" | "Paused" | "Closed";
 
@@ -133,8 +133,12 @@ const subscribe = (cb: () => void) => {
 const getSnapshot = () => state;
 const getServerSnapshot = () => initial;
 
-export const useStore = <T,>(selector: (s: State) => T): T =>
-  useSyncExternalStore(subscribe, () => selector(state), () => selector(initial));
+export const useStore = <T,>(selector: (s: State) => T): T => {
+  const snap = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  // Memoize selector result so non-primitive selectors (e.g. .map) don't
+  // trigger React #185 (infinite re-renders) by returning new refs each call.
+  return useMemo(() => selector(snap), [snap, selector]);
+};
 
 const uid = () => Math.random().toString(36).slice(2, 10);
 
