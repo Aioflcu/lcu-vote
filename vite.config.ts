@@ -1,22 +1,20 @@
-
-import { defineConfig } from 'vite'
-import { tanstackStartVite } from '@tanstack/start-vite'
-import { cloudflare } from '@cloudflare/vite-plugin'
-import tailwindcss from '@tailwindcss/vite' // if using v4
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import tailwindcss from "@tailwindcss/vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    tanstackStartVite(),
+    tsconfigPaths(),
+    tanstackRouter({
+      target: "react",
+      autoCodeSplitting: true,
+    }),
+    react(),
     tailwindcss(),
-    cloudflare()
   ],
-  // This section forces Vite and Rollup to bypass node: builtins for SSR
-  ssr: {
-    external: ['node:async_hooks']
-  },
   build: {
-    rollupOptions: {
-      external: ['node:async_hooks']
-    }
-  }
-})
+    outDir: "dist",
+  },
+});
